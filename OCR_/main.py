@@ -3,7 +3,7 @@ import cv2
 import pytesseract
 # Đảm bảo file rotate_func1.py nằm cùng cấp với main.py
 # (Hoặc điều chỉnh sys.path nếu cấu trúc thư mục khác)
-import rotate_func1
+from . import rotate_func1
 import os
 import sys
 import re
