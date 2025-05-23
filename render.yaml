@@ -3,4 +3,10 @@ services:
     name: ocr-app
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python OCR/main.py
+    # Sửa startCommand để chạy app.py ở thư mục gốc bằng gunicorn
+    # --chdir . : Thay đổi thư mục làm việc hiện tại về thư mục gốc của project
+    # app:app : Chạy ứng dụng Flask có tên 'app' trong file 'app.py'
+    # -w 4 : (Tùy chọn) Chạy 4 worker để xử lý nhiều request đồng thời
+    startCommand: gunicorn app:app --chdir . -w 4
+    # Cổng sẽ được tự động Render gán thông qua biến môi trường PORT,
+    # app.run trong app.py đã được sửa để lắng nghe cổng này.
