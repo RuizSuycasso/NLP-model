@@ -38,5 +38,6 @@ tokenizers==0.21.1
 typing_extensions==4.13.2
 urllib3==2.4.0
 opencv-python
+pytesseract
 matplotlib
 # Đã loại bỏ dòng pip==25.0.1
