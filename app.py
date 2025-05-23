@@ -44,7 +44,7 @@ APP_DIR = os.path.dirname(__file__) # Đây sẽ là PROJECT_DIR nếu app.py n�
 # Lúc này sys.path đã chứa thư mục gốc.
 # Import trực tiếp hàm từ OCR.main
 try:
-     from OCR.main import process_image
+     from OCR_.main import process_image
 except ImportError:
      # Nếu import trên không hoạt động, có thể app.py nằm trong thư mục OCR cùng main.py
      # và cấu trúc thư mục gốc/OCR/main.py là không đúng
