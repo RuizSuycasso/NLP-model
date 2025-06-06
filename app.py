@@ -16,6 +16,12 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 print(f"Thư mục upload ảnh tạm thời: {UPLOAD_FOLDER}")
 
 
+@app.route('/', methods=['GET'])
+def health_check():
+    """Health check endpoint cho Render"""
+    return jsonify({"status": "OK", "message": "OCR Service is running"})
+
+
 @app.route('/ocr', methods=['POST'])
 def ocr():
     print("Nhận request /ocr POST")
@@ -77,5 +83,13 @@ def ocr():
 
 
 if __name__ == '__main__':
-    print("Chạy Flask app ở chế độ debug cục bộ...")
-    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    # Chỉ chạy debug khi test local
+    port = int(os.environ.get('PORT', 5000))
+    debug_mode = os.environ.get('FLASK_ENV') == 'development'
+    
+    print(f"Khởi động Flask app trên port {port}, debug={debug_mode}")
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
+else:
+    # Khi chạy với gunicorn trên production
+    port = int(os.environ.get('PORT', 5000))
+    print(f"Flask app sẵn sàng cho gunicorn trên port {port}")
